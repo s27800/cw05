@@ -10,13 +10,13 @@ public class AnimalsController : ControllerBase
     [HttpGet]
     public IActionResult GetAnimals()
     {
+        var animals = MockDB.Animals;
         return Ok();
     }
 
     [HttpDelete("{id}")]
     public IActionResult DeleteAnimal()
     {
-        var animals = new MockDB().Animals;
         return Ok();
     }
 }
