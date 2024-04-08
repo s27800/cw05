@@ -1,5 +1,4 @@
 using cw05.Database;
-using cw05.Endpoints;
 using cw05.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 
@@ -23,16 +22,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-/*app.MapGet("/animals", () =>
-{
-    //return Ok();
-});
-app.MapPost("/animals", (Animal animal, int id) =>
-{
-    
-});*/
-
 app.MapControllers();
-app.MapAnimalEndpoints();
 
 app.Run();
