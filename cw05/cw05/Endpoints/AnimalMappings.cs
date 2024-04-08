@@ -9,12 +9,12 @@ public static class AnimalMappings
     {
         app.MapPost("/animals", (Animal animal) =>
         {
-            MockDB.AddAnimal(animal);
+            //MockDB.AddAnimal(animal);
         });
 
         app.MapDelete("/animals", (int id) =>
         {
-            MockDB.RemoveAnimal(id);
+            //MockDB.RemoveAnimal(id);
         });
     }
 }
