@@ -8,18 +8,16 @@ namespace cw05.Controllers;
 [Route("[controller]")]
 public class AnimalsController : ControllerBase
 {
-    private static readonly AnimalsDB _animalsDB = new();
-    
     [HttpGet]
     public IActionResult GetAnimals()
     {
-        return Ok(_animalsDB.Animals);
+        return Ok(AnimalsDB.Animals);
     }
     
     [HttpGet("{id:int}")]
     public IActionResult GetAnimal(int id)
     {
-        var animal = _animalsDB.Animals.FirstOrDefault(a => a.Id == id);
+        var animal = AnimalsDB.Animals.FirstOrDefault(a => a.Id == id);
         if (animal == null)
             return NotFound($"Animal with id={id} was not found");
         
@@ -29,30 +27,30 @@ public class AnimalsController : ControllerBase
     [HttpDelete("{id:int}")]
     public IActionResult DeleteAnimal(int id)
     {
-        var animal = _animalsDB.Animals.FirstOrDefault(a => a.Id == id);
+        var animal = AnimalsDB.Animals.FirstOrDefault(a => a.Id == id);
         if (animal == null)
             return NotFound($"Animal with id={id} was not found");
 
-        _animalsDB.Animals.Remove(animal);
+        AnimalsDB.Animals.Remove(animal);
         return NoContent();
     }
 
     [HttpPost]
     public IActionResult CreateAnimal(Animal animal)
     {
-        _animalsDB.Animals.Add(animal);
+        AnimalsDB.Animals.Add(animal);
         return StatusCode(StatusCodes.Status201Created);
     }
     
     [HttpPost("{id:int}")]
     public IActionResult UpdateAnimal(int id, Animal animal)
     {
-        var oldAnimal = _animalsDB.Animals.FirstOrDefault(a => a.Id == id);
+        var oldAnimal = AnimalsDB.Animals.FirstOrDefault(a => a.Id == id);
         if (oldAnimal == null)
             return NotFound($"Animal with id={id} was not found");
 
-        _animalsDB.Animals.Remove(oldAnimal);
-        _animalsDB.Animals.Add(animal);
+        AnimalsDB.Animals.Remove(oldAnimal);
+        AnimalsDB.Animals.Add(animal);
         
         return NoContent();
     }
